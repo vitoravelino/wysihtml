@@ -1,0 +1,3 @@
+  // tail
+  return wysihtml5;
+}))

@@ -100,7 +100,7 @@
     /** @scope wysihtml5.Selection.prototype */ {
     constructor: function(editor, contain, unselectableClass) {
       // Make sure that our external range library is initialized
-      window.rangy.init();
+      rangy.init();
 
       this.editor   = editor;
       this.composer = editor.composer;
@@ -233,7 +233,7 @@
             if (!sel || (lastSibling === node && node.nodeType === 1 && win.getComputedStyle(node).display === "block")) {
               if (notVisual) {
                 // If setAfter is used as internal between actions, self-removing caretPlaceholder has simpler implementation
-                // and remove itself in call stack end instead on user interaction 
+                // and remove itself in call stack end instead on user interaction
                 var caretPlaceholder = this.doc.createTextNode(wysihtml5.INVISIBLE_SPACE);
                 node.parentNode.insertBefore(caretPlaceholder, node.nextSibling);
                 this.selectNode(caretPlaceholder);
@@ -508,7 +508,7 @@
           s = this.getSelection(),
           range = this.getRange(),
           startNode = range.startContainer;
-      
+
       if (startNode) {
         if (startNode.nodeType === wysihtml5.TEXT_NODE) {
           return this.isCollapsed() && (startNode.nodeType === wysihtml5.TEXT_NODE && (/^\s*$/).test(startNode.data.substr(0,range.startOffset)));
@@ -1163,7 +1163,7 @@
 
       wysihtml5.dom.removeInvisibleSpaces(this.composer.element);
       doSelect();
-      
+
       if (this.composer.element.firstChild && notSelected())  {
         // Try fixing end
         this.composer.element.appendChild(blankEndNode);
@@ -1172,11 +1172,11 @@
         if (notSelected()) {
           // Remove end fix
           blankEndNode.parentNode.removeChild(blankEndNode);
-          
+
           // Try fixing beginning
           this.composer.element.insertBefore(blankStartNode, this.composer.element.firstChild);
           doSelect();
-          
+
           if (notSelected()) {
             // Try fixing both
             this.composer.element.appendChild(blankEndNode);
