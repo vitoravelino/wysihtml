@@ -8,7 +8,6 @@ module.exports = function(grunt) {
     "node_modules/rangy/lib/rangy-selectionsaverestore.js",
     "src/umd/head.js",
     "src/wysihtml5.js",
-    "src/polyfills.js",
     "lib/base/base.js",
     "src/browser.js",
     "src/lang/array.js",
