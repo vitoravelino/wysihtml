@@ -4,10 +4,11 @@ module.exports = function(grunt) {
 
   // List required source files that will be built into wysihtml5x.js
   var base = [
-    "src/wysihtml5.js",
-    "src/polyfills.js",
     "node_modules/rangy/lib/rangy-core.js",
     "node_modules/rangy/lib/rangy-selectionsaverestore.js",
+    "src/umd/head.js",
+    "src/wysihtml5.js",
+    "src/polyfills.js",
     "lib/base/base.js",
     "src/browser.js",
     "src/lang/array.js",
@@ -106,18 +107,20 @@ module.exports = function(grunt) {
     "src/views/synchronizer.js",
     "src/views/sourceview.js",
     "src/views/textarea.js",
-    "src/editor.js"
+    "src/editor.js",
+    "src/umd/tail.js"
   ];
 
   // List of optional source files that will be built to wysihtml5x-toolbar.js
-  var toolbar = [
+  var toolbar = base.slice(0, -1).concat([
     "src/toolbar/dialog.js",
     "src/toolbar/speech.js",
     "src/toolbar/toolbar.js",
     "src/toolbar/dialog_createTable.js",
     "src/toolbar/dialog_foreColorStyle.js",
-    "src/toolbar/dialog_fontSizeStyle.js"
-  ];
+    "src/toolbar/dialog_fontSizeStyle.js",
+    "src/umd/tail.js"
+  ]);
 
   // Project configuration.
   grunt.initConfig({
@@ -134,7 +137,7 @@ module.exports = function(grunt) {
         dest: 'dist/<%= pkg.name %>.js'
       },
       toolbar: {
-        src: base.concat(toolbar),
+        src: toolbar,
         dest: 'dist/<%= pkg.name %>-toolbar.js'
       }
     },
